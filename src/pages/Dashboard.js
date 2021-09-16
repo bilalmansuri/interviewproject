@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { auth } from "../services/firebase";
 import { logOut } from '../services/firebase';
+import Demo from "./Demo";
+import MyGrid from "./Grid";
 
 const Dashboard = () => {
     const history = useHistory()
@@ -22,11 +24,18 @@ const Dashboard = () => {
     }, []);
     return (
         <>
-            <h1>
-                Welcome to {user?.displayName}
-            </h1>
-            <Button variant="primary" onClick={logOut}>Logout</Button>
-
+            <Container>
+                <Row>
+                    <Col>
+                        Welcome to {user?.displayName}
+                    </Col>
+                    <Col>
+                        <Button variant="primary" onClick={logOut}>Logout</Button>
+                    </Col>
+                </Row>
+                <MyGrid/>
+                <Demo />
+            </Container>
         </>
     )
 }
